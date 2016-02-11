@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# Try to build and run the example code.  Provide input on both stdin
+# and as first argument as the programs seem to handle either or both.
+# The goal is to verify that it is possible to link with the libvorbis
+# library and run the resulting binaries.
+
+set -e
+
+CC=gcc
+
+retval=0
+cd $ADTTMP
+
+# Some small ogg file, picked randomly from pysycache-i18n
+cp /usr/share/games/pysycache/lang/en_EN/menu9.ogg testinput.ogg
+
+for f in /usr/share/doc/libvorbis-dev/examples/*.c.gz; do
+    echo "****** Testing $f ******"
+    cp $f .
+    gunzip $(basename $f)
+    ${CC} -o example $(basename $f .gz) \
+	-logg -lvorbisenc -lvorbisfile -lvorbis -lm
+
+    if cat testinput.ogg | ./example testinput.ogg > testoutput 2>&1 ; then
+	echo "success running $f"
+    else
+	echo "error running $f"
+	retval=1
+    fi
+done
+exit $retval
