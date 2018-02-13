@@ -1,7 +1,8 @@
 Source: libvorbis
 Section: libs
 Priority: optional
-Maintainer: Debian Xiph.org Maintainers <pkg-xiph-maint@lists.alioth.debian.org>
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Debian Xiph.org Maintainers <pkg-xiph-maint@lists.alioth.debian.org>
 Uploaders:
  Ralph Giles <giles@thaumas.net>
  , Martin Steghöfer <martin@steghoefer.eu>
